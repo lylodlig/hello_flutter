@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:hello_flutter/first_app/RandomWords.dart';
-import 'package:hello_flutter/widget/base.dart';
+//import 'package:hello_flutter/widget/base.dart';
+import 'package:hello_flutter/widget/container.dart';
+import 'package:hello_flutter/widget/gridview.dart';
+import 'package:hello_flutter/widget/listview.dart';
 
 void main() => runApp(new MyApp());
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         body: new Center(
           //child: new Text('Hello World'), // Replace the highlighted text...
-          child: TitleSection("Title","subTitle",3), // With this highlighted text.
+          child: ListWidget3(), // With this highlighted text.
         ),
       ),
     );
