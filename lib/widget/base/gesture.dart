@@ -24,10 +24,14 @@ class TestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      child: Text("点击"),
-      onPressed: () => //页面跳转
-          Navigator.push(context, MaterialPageRoute(builder: (_) => Test())),
-    );
+        child: Text("点击"),
+        onPressed: () async {
+          //页面跳转
+//        Navigator.push(context, MaterialPageRoute(builder: (_) => Test()))
+          var msg = await Navigator.push(
+              context, MaterialPageRoute(builder: (_) => Test()));
+          debugPrint(msg);
+        });
   }
 }
 

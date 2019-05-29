@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:hello_flutter/first_app/RandomWords.dart';
 //import 'package:hello_flutter/widget/base.dart';
-import 'package:hello_flutter/widget/container.dart';
-import 'package:hello_flutter/widget/gridview.dart';
-import 'package:hello_flutter/widget/listview.dart';
+import 'package:hello_flutter/widget/base/container.dart';
+import 'package:hello_flutter/widget/base/gridview.dart';
+import 'package:hello_flutter/widget/base/listview.dart';
 
 void main() => runApp(new MyApp());
 
