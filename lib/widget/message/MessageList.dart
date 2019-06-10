@@ -6,11 +6,11 @@ class MessageList extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _MessageListState();
+    return MessageListState();
   }
 }
 
-class _MessageListState extends State<MessageList> {
+class MessageListState extends State<MessageList> {
   final List<Message> messages = [];
 
   @override
@@ -18,10 +18,20 @@ class _MessageListState extends State<MessageList> {
     return ListView.builder(
         itemCount: messages.length,
         itemBuilder: (context, index) {
+          final subtitle =
+              DateTime.fromMillisecondsSinceEpoch(messages[index].timestamp)
+                  .toLocal()
+                  .toIso8601String();
           return ListTile(
             title: Text(messages[index].message),
-            subtitle: Text("000"),
+            subtitle: Text(subtitle),
           );
         });
+  }
+
+  void addMsg(Message message) {
+    setState(() {
+      messages.add(message);
+    });
   }
 }
