@@ -36,6 +36,16 @@ class TestWidget extends StatelessWidget {
 }
 
 //任意控件的手势事件
+///onTapDown：按下
+/// onTap：点击动作
+/// onTapUp：抬起
+/// onTapCancel：前面触发了 onTapDown，但并没有完成一个 onTap 动作
+/// onDoubleTap：双击
+/// onLongPress：长按
+/// onScaleStart, onScaleUpdate, onScaleEnd：缩放
+/// onVerticalDragDown, onVerticalDragStart, onVerticalDragUpdate, onVerticalDragEnd, onVerticalDragCancel, onVerticalDragUpdate：在竖直方向上移动
+/// onHorizontalDragDown, onHorizontalDragStart, onHorizontalDragUpdate, onHorizontalDragEnd, onHorizontalDragCancel, onHorizontalDragUpdate：在水平方向上移动
+/// onPanDown, onPanStart, onPanUpdate, onPanEnd, onPanCancel：拖曳（水平、竖直方向上移动）
 class TestWidget1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,6 +70,8 @@ class TestWidget2 extends StatelessWidget {
         child: Text("Listenre"),
         onPointerDown: (event) => debugPrint("onPointerDown"),
         onPointerUp: (event) => debugPrint("onPointerUp"),
+        onPointerMove: (event) => print('onPointerMove'),
+        onPointerCancel: (event) => print('onPointerCancel'),
       ),
     );
   }

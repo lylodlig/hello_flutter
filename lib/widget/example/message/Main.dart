@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/widget/message/Input.dart';
-import 'package:hello_flutter/widget/message/MessageList.dart';
+import 'package:hello_flutter/widget/example/message/Input.dart';
+import 'package:hello_flutter/widget/example/message/MessageList.dart';
 
 class MainWidget extends StatelessWidget {
   final messageListKey =

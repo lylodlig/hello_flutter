@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/widget/message/Main.dart';
+import 'package:hello_flutter/widget/example/message/Main.dart';
 
 //输入返回列表，增加记录
 void main() => runApp(new MyApp());

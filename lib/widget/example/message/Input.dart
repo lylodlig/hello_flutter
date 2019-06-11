@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/widget/message/Message.dart';
+import 'package:hello_flutter/widget/example/message/Message.dart';
 
 class InputForm extends StatefulWidget {
   @override
