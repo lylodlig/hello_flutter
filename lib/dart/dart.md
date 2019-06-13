@@ -1,4 +1,55 @@
 [toc]
+
+# 变量
+变量的默认值都是null
+```
+int lineCount;
+assert(lineCount == null);
+```
+## final
+final声明的变量只能被赋值一次
+```
+final name = 'Bob'; // Without a type annotation
+final String nickname = 'Bobby';
+```
+
+## const
+const比final更严格，是编译时常量，在编译的时候就知道它的值，也是final的。
+const不能修饰实例化的对象，比如这样是错误的`const p=Point();`，因为不运行是不知道Point()的值的
+
+```
+	//编译期常量
+	public static final int num = 10;
+	//运行时常量
+	public static final int len = "Rhien".length();
+```
+
+- 用于创建常量
+```
+var foo = const [];
+final bar = const [];
+const baz = []; // Equivalent to `const []`
+```
+
+- 修饰构造函数
+一个类能够定义 const 构造函数的前提是成员变量必须都是用final或const修饰的
+```
+class Point{
+    final String a;
+    const Point(String a):this.a=a
+}
+```
+
+- const 不可变性可传递
+如果你有一个final修饰的成员变量，这个成员变量包含了一个集合，那么这个集合仍然是可变的。如果包含的是const修饰的集合，那么集合内的所有东西是递归地不可变的。
+下面的代码会报错：
+```
+  var ab = const [1];
+  ab[0] = 2;
+```
+
+
+
 ## Map
 ```
   var map = Map<String, int>();
