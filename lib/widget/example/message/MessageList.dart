@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_flutter/widget/example/message/Message.dart';
 
 class MessageList extends StatefulWidget {
+  // 构造函数，具名参数
   MessageList({Key key}) : super(key: key);
 
   @override

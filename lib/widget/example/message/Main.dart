@@ -16,6 +16,7 @@ class MainWidget extends StatelessWidget {
             // 获取上个界面返回的数据
             final result = await Navigator.push(
                 context, MaterialPageRoute(builder: (_) => InputForm()));
+            // 这里的currentState就是MessageListState，所以可以调用addMsg方法
             var currentState = messageListKey.currentState;
             currentState.addMsg(result);
           },

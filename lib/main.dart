@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hello_flutter/RollingBtn.dart';
+import 'package:hello_flutter/pages/page_main.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,16 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My first Flutter APP',
-      //应用主页
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter Demo'),
-        ),
-        body: Center(
-          child: RollingButton(),
-        ),
-      ),
-    );
+        title: 'My first Flutter APP',
+        //应用主页
+        home: Main());
   }
 }
