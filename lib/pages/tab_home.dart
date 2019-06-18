@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter/http/wan_api.dart';
+import 'package:hello_flutter/http/wan_http_util_with_cookie.dart';
 import 'package:hello_flutter/pages/list/page_list.dart';
+import 'package:hello_flutter/widget/wan_widget/banner.dart';
 
 class TabHome extends StatefulWidget {
   @override
@@ -9,17 +12,28 @@ class TabHome extends StatefulWidget {
 }
 
 class _TabHomeState extends State<TabHome> {
+  var _banner;
+
+  @override
+  void initState() {
+    getBanner();
+    super.initState();
+  }
+
+  void getBanner() {
+    HttpUtil.get(Api.BANNER, (data) {
+      if (data != null)
+        setState(() {
+          _banner = data;
+        });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
       child: Column(
-        children: <Widget>[
-          RaisedButton(
-              child: Text("List"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => ListMainPage())))
-        ],
+        children: <Widget>[WanBanner(_banner)],
       ),
     );
   }

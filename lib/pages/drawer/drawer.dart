@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter/pages/list/page_list.dart';
 
 class DrawerPage extends StatefulWidget {
   @override
@@ -26,9 +27,13 @@ class _DrawerPageState extends State<DrawerPage> {
           ),
         ),
         ListTile(
-          title: Text("测试1"),
-          subtitle: Text("sub"),
+          title: Text("List"),
           trailing: Icon(Icons.arrow_forward_ios),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => ListMainPage()));
+          },
         )
       ]),
     );
