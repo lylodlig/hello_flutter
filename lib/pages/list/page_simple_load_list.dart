@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 加载更多的ListView
+// 上拉加载更多的ListView
 class PageSimpleLoadList extends StatefulWidget {
   @override
   _PageSimpleLoadListState createState() => _PageSimpleLoadListState();
@@ -29,6 +29,22 @@ class _PageSimpleLoadListState extends State<PageSimpleLoadList> {
         _isPerformingRequest = true;
       });
       List<int> newList = await fakeRequest(items.length);
+      // 处理空数据的情况
+      if (newList.isEmpty) {
+        double edge = 50.0;
+        debugPrint(
+            'maxScrollExtent:${_scrollController.position.maxScrollExtent}   pixels:${_scrollController.position.pixels}');
+        // _scrollController.position.pixels当前滚动位置的像素值
+        // _scrollController.position.maxScrollExtent滚动的最大范围
+        double offsetFromBottom = _scrollController.position.maxScrollExtent -
+            _scrollController.position.pixels;
+        if (offsetFromBottom < edge) {
+          _scrollController.animateTo(
+              _scrollController.offset - (edge - offsetFromBottom),
+              duration: new Duration(milliseconds: 500),
+              curve: Curves.easeOut);
+        }
+      }
       setState(() {
         items.addAll(newList);
         _isPerformingRequest = false;
@@ -38,6 +54,7 @@ class _PageSimpleLoadListState extends State<PageSimpleLoadList> {
 
   Future<List<int>> fakeRequest(int from) async {
     return Future.delayed(Duration(seconds: 2), () {
+      if (from >= 30) return [];
       return List.generate(10, (index) => index + from);
     });
   }

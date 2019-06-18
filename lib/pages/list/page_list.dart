@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_flutter/pages/list/page_simple_list.dart';
 import 'package:hello_flutter/pages/list/page_simple_list2.dart';
 import 'package:hello_flutter/pages/list/page_simple_load_list.dart';
+import 'package:hello_flutter/pages/list/page_simple_refresh_list.dart';
 
 class ListMainPage extends StatefulWidget {
   @override
@@ -28,9 +29,13 @@ class _ListMainPageState extends State<ListMainPage> {
                 onPressed: () => Navigator.push(context,
                     MaterialPageRoute(builder: (_) => PageSimpleList2()))),
             RaisedButton(
-                child: Text("异步获取数据的ListView"),
+                child: Text("异步获取数据加载更多的ListView"),
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => PageSimpleLoadList())))
+                    MaterialPageRoute(builder: (_) => PageSimpleLoadList()))),
+            RaisedButton(
+                child: Text("下拉刷新的ListView"),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => PageRefreshList())))
           ],
         ),
       ),
