@@ -28,11 +28,12 @@ class _PageRefreshListState extends State<PageRefreshList> {
     setState(() {
       items.addAll(newList);
     });
+    // TODO Q,这里返回的Future作用，为什么返回null也可以
     return null;
   }
 
   Future<List<int>> fakeRequest(int from) async {
-    return Future.delayed(Duration(seconds: 2), () {
+    return Future.delayed(Duration(seconds: 10), () {
       return List.generate(10, (index) => index + from);
     });
   }

@@ -1,60 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class WanBanner extends StatefulWidget {
-  var banner;
-
-  WanBanner(this.banner);
+  WanBanner({Key key}) : super(key: key);
 
   @override
-  _WanBannerState createState() => _WanBannerState(banner);
+  WanBannerState createState() => new WanBannerState();
 }
 
-class _WanBannerState extends State<WanBanner>
-    with SingleTickerProviderStateMixin {
-  var banner;
-  var tabController;
+class WanBannerState extends State<WanBanner> {
+  var banner = [];
 
-  _WanBannerState(this.banner);
+  void setBanner(dynamic banner) {
+    setState(() {
+      this.banner = banner;
+    });
+  }
 
-  @override
-  void initState() {
-    tabController =
-        TabController(length: banner == null ? 0 : banner.length, vsync: this);
-    super.initState();
+  Widget getBannerItem(item) {
+    var imgUrl = item['imagePath'];
+    var title = item['title'];
+    item['link'] = item['url'];
+    return GestureDetector(
+      onTap: () => _handleItemClick(item),
+      // 按比例显示
+      child: AspectRatio(
+        // 宽高2:1
+        aspectRatio: 2 / 1,
+        // 类似FrameLayout
+        child: Stack(
+          children: <Widget>[
+            Image.network(imgUrl, fit: BoxFit.cover),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 1000.0,
+                color: Color(0x50000000),
+                padding: EdgeInsets.all(5.0),
+                child: Text(title,
+                    style: TextStyle(color: Colors.white, fontSize: 15.0)),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> items = [];
-    if (banner != null && banner.length > 0) {
-      banner.foreach((item) {
-        var imgUrl = item['imagePath'];
-        var title = item['title'];
-        item['link'] = item['url'];
-        items.add(GestureDetector(
-          onTap: () => _handleItemClick(item),
-          child: AspectRatio(
-            aspectRatio: 2 / 1,
-            child: Stack(
-              children: <Widget>[
-                Image.network(imgUrl, fit: BoxFit.cover),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: 1000.0,
-                    color: Color(0x50000000),
-                    padding: EdgeInsets.all(5.0),
-                    child: Text(title,
-                        style: TextStyle(color: Colors.white, fontSize: 15.0)),
-                  ),
-                )
-              ],
-            ),
-          ),
+    return Container(
+        height: banner.length > 0 ? 200.0 : 0,
+        child: Swiper(
+          itemCount: banner.length,
+          pagination: SwiperPagination(alignment: Alignment.bottomRight),
+          autoplay: true,
+          itemBuilder: (BuildContext context, int index) {
+            return getBannerItem(banner[index]);
+          },
         ));
-      });
-    }
-    return TabBarView(children: items, controller: tabController);
   }
 
   _handleItemClick(item) {}

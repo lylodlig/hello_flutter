@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-// 自定义动画
+// 测试AspectRatio
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
