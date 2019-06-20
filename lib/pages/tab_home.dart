@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/http/wan_api.dart';
 import 'package:hello_flutter/http/wan_http_util_with_cookie.dart';
+import 'package:hello_flutter/widget/wan_widget/article_item.dart';
 import 'package:hello_flutter/widget/wan_widget/banner.dart';
 
 class TabHome extends StatefulWidget {
@@ -13,6 +14,7 @@ class TabHome extends StatefulWidget {
 class _TabHomeState extends State<TabHome> {
   final bannerKey = GlobalKey<WanBannerState>();
   var banner;
+  var list = [];
 
   var page = 1;
 
@@ -34,10 +36,12 @@ class _TabHomeState extends State<TabHome> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
         child: ListView.builder(
-            itemCount: 1,
+            itemCount: list.length + 1,
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) {
                 return WanBanner(key: bannerKey);
+              } else {
+                return ArticleItem(list[index-1]);
               }
             }),
         onRefresh: _getData);
@@ -51,10 +55,12 @@ class _TabHomeState extends State<TabHome> {
       }
     }
 
-    var listRes=await getHomeArticleList();
+    var listRes = await getHomeArticleList();
     if (listRes["status"] == 200) {
-      if (listRes["data"] != null) {
-
+      if (listRes["data"] != null && listRes["data"]['datas'] != null) {
+        setState(() {
+          list = listRes["data"]['datas'];
+        });
       }
     }
 

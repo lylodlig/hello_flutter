@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/pages/list/page_list.dart';
+import 'package:hello_flutter/pages/state/state.dart';
 
 class DrawerPage extends StatefulWidget {
   @override
@@ -33,6 +34,15 @@ class _DrawerPageState extends State<DrawerPage> {
             Navigator.pop(context);
             Navigator.push(
                 context, MaterialPageRoute(builder: (_) => ListMainPage()));
+          },
+        ),
+        ListTile(
+          title: Text("状态管理"),
+          trailing: Icon(Icons.arrow_forward_ios),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => StatePage()));
           },
         )
       ]),

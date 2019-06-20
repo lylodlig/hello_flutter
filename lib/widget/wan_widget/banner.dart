@@ -12,9 +12,7 @@ class WanBannerState extends State<WanBanner> {
   var banner = [];
 
   void setBanner(dynamic banner) {
-    setState(() {
-      this.banner = banner;
-    });
+    this.banner = banner;
   }
 
   Widget getBannerItem(item) {
